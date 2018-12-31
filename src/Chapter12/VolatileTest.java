@@ -1,22 +1,18 @@
-package Chapter13;
-
-import java.util.concurrent.atomic.AtomicInteger;
+package Chapter12;
 
 /**
  * Created by Citrix on 2018-12-31.
  */
-public class AtomicTest {
+public class VolatileTest {
     /*
-    * 能得到200000
+    * 得到的数字为112135，小于200000
     * */
-    public static AtomicInteger race = new AtomicInteger(0);
+    public static volatile int race = 0;
 
     public static void increase() {
-        race.incrementAndGet();
+        race++;
     }
-
     private static final int THREAD_COUNT = 20;
-
     public static void main(String[] args) throws Exception {
         Thread[] threads = new Thread[THREAD_COUNT];
         for (int i = 0; i < THREAD_COUNT; i++) {
